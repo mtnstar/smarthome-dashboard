@@ -9,5 +9,6 @@
   apt install -y git curl
   git clone https://github.com/mtnstar/smarthome-dashboard
   cd smarthome-dashboard
-  sh <(curl -L https://nixos.org/nix/install) --daemon
+  cd nixos/rpi5
+  ./init.sh
 ```
