@@ -1,6 +1,8 @@
 Vagrant.configure("2") do |config|
   config.vm.box = "nixbox/nixos"
   config.vm.box_version = "23.11"
+  config.vm.provision "file", source: "configuration.nix", destination: "/etc/nixos/configuration.nix"
+  config.vm.provision "file", source: "home-assistant", destination: "home-assistant"
 
   config.vm.provider :libvirt do |libvirt|
     libvirt.memory = 4096
@@ -13,9 +15,6 @@ Vagrant.configure("2") do |config|
 
   # Provision using Nix
   config.vm.provision "shell", inline: <<-SHELL
-    sudo cp /configuration.nix /etc/nixos/configuration.nix
-    sudo mkdir -p /etc/nixos/home-assistant
-    sudo cp /home-assistant/config.yaml /etc/nixos/home-assistant/config.yaml
     sudo nixos-rebuild switch
   SHELL
 end

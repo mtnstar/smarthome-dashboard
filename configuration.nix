@@ -5,6 +5,7 @@
 
   networking.firewall.allowedTCPPorts = [ 22 8123 ];
   services.openssh.enable = true;
+  networking.interfaces.ens6.useDHCP = true;
 
   services.home-assistant = {
     enable = true;
@@ -17,5 +18,5 @@
     password = "vagrant"; # simple dev password
   };
 
-  system.stateVersion = "24.05";
+  system.stateVersion = "23.11";
 }
